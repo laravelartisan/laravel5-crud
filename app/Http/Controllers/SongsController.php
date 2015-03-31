@@ -17,6 +17,7 @@
 
             $this->song = $song;
 
+
         }
 
         /**
@@ -30,6 +31,7 @@
             //
 
             $songs = $this->song->get();
+           // $songs = Song::all();
     //        dd($songs);
 
             return view('songs.index',compact('songs'));

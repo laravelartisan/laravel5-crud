@@ -12,7 +12,7 @@
           {{--Lyric: <br/><br/> {{ $song->lyrics }}--}}
             {!! Form::open(['route'=>'songs.store']) !!}
 
-            @include('songs.form')
+                @include('songs.form')
 
             <div class="form-group">
             {!! Form::submit('Add New Song',['class'=>'btn btn-primary']) !!}

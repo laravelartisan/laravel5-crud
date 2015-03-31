@@ -13,13 +13,13 @@
 
 //Route::get('/', 'WelcomeController@index');
 
-/*Route::get('home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-Route::get('/', 'PagesController@index');*/
+//Route::get('/', 'PagesController@index');
 
 /*Route::get('/', function(){
 
@@ -27,11 +27,22 @@ Route::get('/', 'PagesController@index');*/
     dd(DB::table('users')->get());
 
 });*/
+/*Route::get('home',function(){
+    return view("home");
+});
+Route::get('auth/register','Auth\AuthController@getRegister');
+Route::get('auth/login','Auth\AuthController@getLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('/',function(){
 
-
-
-
-Route::get('/', 'PagesController@index');
+   return view('auth.register');
+});*/
+/*Route::get('users',function(){
+    return view('users.index');
+});*/
+//Route::get('/', 'PagesController@index');
 
 $router->bind('songs',function($slug ){
 
@@ -50,3 +61,6 @@ $router->resource('songs','SongsController',[
 
     ]
 ]);
+
+Route::resource('users','UsersController');
+Route::post('users/login', 'UsersController@login');
