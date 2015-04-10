@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use Auth;
 use App\Http\Requests\LoginRequest;
+//use Request;
 
 
 //use App\Http\Controllers\Auth\AuthController;
@@ -106,5 +107,12 @@ class UsersController extends Controller {
 	{
 		//
 	}
+   /* public function upload(){
+        if (Request::hasFile('upload')) {
+            var_dump($result = Imageupload::upload(Request::file('upload'))) ;
+        }else{
+            echo 'no file read';
+        }
+    }*/
 
 }

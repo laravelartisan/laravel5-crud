@@ -137,6 +137,8 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
+        'Matriphe\Imageupload\ImageuploadServiceProvider',
+        'Intervention\Image\ImageServiceProvider',
 //        'Google\Client',
 
 
@@ -199,6 +201,9 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
         'Form'      => 'Illuminate\Html\FormFacade',
         'Html'      => 'Illuminate\Html\HtmlFacade',
+        'Imageupload' => 'Matriphe\Imageupload\ImageuploadFacade',
+        'Image' => 'Intervention\Image\Facades\Image'
+
 //        'Calendar'  => 'Google\Service\Calendar'
 
 	],

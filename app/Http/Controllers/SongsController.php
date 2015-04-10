@@ -69,7 +69,7 @@
         public function show(Song $song)
         {
             //
-    //        dd($song);
+//            dd($song);
             return view('songs.show',compact('song'));
         }
 

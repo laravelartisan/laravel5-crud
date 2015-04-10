@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,7 +14,9 @@
 
 //Route::get('/', 'WelcomeController@index');
 
-Route::get('/', 'HomeController@index');
+//Route::get('/', 'HomeController@index');
+Route::get('photo','ImagesController@index');
+Route::post('photo/upload','ImagesController@createImage');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -64,3 +67,16 @@ $router->resource('songs','SongsController',[
 
 Route::resource('users','UsersController');
 Route::post('users/login', 'UsersController@login');
+/*Route::get('file',function(){
+
+    return view('upload');
+});
+
+Route::get('file/upload','UsersController@upload');*/
+
+
+Route::get('fileentry', 'FileEntryController@index');
+Route::get('fileentry/get/{filename}', [
+    'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+Route::post('fileentry/add',[
+    'as' => 'addentry', 'uses' => 'FileEntryController@add']);
