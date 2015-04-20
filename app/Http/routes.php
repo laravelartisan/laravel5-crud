@@ -12,7 +12,7 @@
 |
 */
 
-//Route::get('/', 'WelcomeController@index');
+Route::get('/', 'WelcomeController@index');
 
 //Route::get('/', 'HomeController@index');
 Route::get('photo','ImagesController@index');
@@ -80,3 +80,19 @@ Route::get('fileentry/get/{filename}', [
     'as' => 'getentry', 'uses' => 'FileEntryController@get']);
 Route::post('fileentry/add',[
     'as' => 'addentry', 'uses' => 'FileEntryController@add']);
+
+
+Route::post('mail/send','MailController@email');
+
+Route::get('mail',function(){
+
+    return view('emails.index');
+});
+
+Route::get('mailConfirmation',function(){
+    return view('email')->with('message', 'Thanks for contacting us!');
+});
+
+Route::get('activeRegistration',function(){
+    return 'ur registration is activated';
+});

@@ -12,3 +12,4 @@
             {!! Form::text('slug',null,['class'=>'form-control']) !!}
             {!!  $errors->first('slug','<span class="help-block">:message</span>')   !!}
             </div>
+

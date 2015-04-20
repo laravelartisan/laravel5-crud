@@ -28,8 +28,8 @@ return [
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
-
+//	'host' => 'smtp.mailgun.org',
+    'host' => 'smtp.gmail.com',
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Host Port
@@ -41,8 +41,8 @@ return [
 	|
 	*/
 
-	'port' => 587,
-
+//	'port' => 587,
+    'port' => 465,
 	/*
 	|--------------------------------------------------------------------------
 	| Global "From" Address
@@ -67,8 +67,8 @@ return [
 	|
 	*/
 
-	'encryption' => 'tls',
-
+//	'encryption' => 'tls',
+    'encryption' => 'ssl',
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Server Username
@@ -80,8 +80,8 @@ return [
 	|
 	*/
 
-	'username' => null,
-
+//	'username' => null,
+    'username' => 'sssamudra7@gmail.com',
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Server Password
@@ -93,8 +93,8 @@ return [
 	|
 	*/
 
-	'password' => null,
-
+//	'password' => null,
+    'password' => '@10250700',
 	/*
 	|--------------------------------------------------------------------------
 	| Sendmail System Path

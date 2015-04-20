@@ -90,7 +90,7 @@ class UsersController extends Controller {
     public function login(LoginRequest $request )
     {
         //
-        Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->has('remember'));
+        Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1], $request->has('remember'));
 
                 return redirect()->route('users.index');
 

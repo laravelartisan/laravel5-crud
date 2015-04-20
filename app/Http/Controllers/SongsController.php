@@ -6,6 +6,7 @@
         use App\Song;
         use Illuminate\Support\Facades\Redirect;
         use App\Http\Requests\CreateSongRequest ;
+        use Auth;
 
     class SongsController extends Controller {
 
@@ -29,6 +30,7 @@
         public function index()
         {
             //
+//            return Auth::user();
 
             $songs = $this->song->get();
            // $songs = Song::all();
@@ -91,18 +93,19 @@
          * @param  int  $id
          * @return Response
          */
-        public function update(Request $request,Song $song )
+        public function update(CreateSongRequest $request,Song $song )
         {
 
     //        dd($song);
     //        dd($request);
-            $this->validate($request, [
+           $this->validate($request, [
                 'title' => 'required|max:255',
                 'slug' => "required|unique:songs,slug,$song->id|max:10", //slug field is unique for all songs except the song(here mentioned
             // through $song->id  ) being edited
             ]);
 
               $song->fill($request->all())->save();
+//            $song->update($request->all());
     //        dd($song);
 
                 return redirect()->route('song_list');

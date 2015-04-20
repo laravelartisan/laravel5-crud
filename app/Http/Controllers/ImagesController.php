@@ -43,7 +43,7 @@ class ImagesController extends Controller {
 //        $image = $_FILES['photo']['tmp_name'];
 //        $store =  Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
 //        var_dump($img);
-        echo '<br>';
+
 //        var_dump($image);die();
 
         // *** 1) Initialise / load image
