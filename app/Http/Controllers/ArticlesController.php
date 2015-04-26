@@ -4,21 +4,41 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-
+use App\Article;
 use App\User;
 
-class MailController extends Controller {
+class ArticlesController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-    private $name;
-    private $email;
+    private  $article ;
+    private $user;
+
+    public function __construct( Article $article, User $user){
+        $this->user = $user;
+
+        $this->article = $article;
+    }
+
 	public function index()
 	{
 		//
+
+
+//        dd($this->user->find(29)->articles);
+        foreach($this->user->get() as $user){
+
+          dd( $ff = $this->user->find($user->id)->articles()->get());
+
+        }
+        dd($ff);
+//        dd($this->user->find(29)->articles()->get());
+
+        $articles =  $this->article->get();
+        return view('article',compact('articles'));
 	}
 
 	/**
@@ -84,31 +104,7 @@ class MailController extends Controller {
 	{
 		//
 	}
-    public function email(Request $request){
-
-        $this->name = $request->get('name');
-        $this->email = $request->get('email');
-        $this->user_message =  $request->get('message');
-
-        \Mail::send('emails.contact',
-            array(
-                'name' => $this->name,
-                'email' => $this->email,
-                'user_message' => $this->user_message,
-
-            ), function($message)
-            {
-                $message->from('sssamudra7@gmail.com');
-                $message->to($this->email, 'Admin')->subject('TODOParrot Feedback');
-            });
 
 
-
-
-
-//        return \Redirect::route('contact')->with('message', 'Thanks for contacting us!');
-//        return \Redirect::to('mailConfirmation');
-        return \Redirect::to('contact')->with('message', 'Thanks for contacting us!');
-    }
 
 }

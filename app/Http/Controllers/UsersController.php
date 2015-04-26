@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use Auth;
 use App\Http\Requests\LoginRequest;
+use App\Article;
+
 //use Request;
 
 
@@ -20,11 +22,20 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
     protected $all;
+    private $name;
+    private $email;
+    private $confirmationCode;
+
+
+
 	public function index()
 	{
 		//
-
+           /*if(Auth::user()){
+               return view('users.index');
+           }*/
         return view('users.index');
+
 	}
 
 	/**
@@ -45,11 +56,39 @@ class UsersController extends Controller {
 	public function store(UsersRequest $request, User $user)
 	{
 		//
+//        $this->mail();
+        $this->name = $request->get('name');
+        $this->email = $request->get('email');
+
+        $this->confirmationCode = str_random(30);
+
+//        $user->confirmation_code = $this->confirmationCode;
+
+
+       $mail = \Mail::send('emails.contact',
+            array(
+                'name' => $this->name,
+                'email' => $this->email,
+
+                'confirmationCode'=>$this->confirmationCode
+
+            ), function($message)
+            {
+                $message->from('sssamudra7@gmail.com');
+                $message->to($this->email, 'Admin')->subject('TODOParrot Feedback');
+            });
+
+
         $request->all = array_replace($request->all(), array('password'=>\Hash::make($request->password)));
+//          array_push($request->all,$user->confirmation_code);
+        $request->all= array_add($request->all,'confirmation_code',$this->confirmationCode);
 //        dd($request->all);
-        Auth::login($user->create($request->all));
+//        Auth::login($user->create($request->all));
+        $user->create($request->all);
+
 //
-        return view ('users.index');
+        return \Redirect::to('users')->with('message', 'a message has been sent to your email');
+//        return view ('users.index');
 
 
 //        return Redirect::to('users');
@@ -87,12 +126,16 @@ class UsersController extends Controller {
 	{
 		//
 	}
-    public function login(LoginRequest $request )
+    public function login(LoginRequest $request,Article $articles, User $user  )
     {
         //
-        Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1], $request->has('remember'));
+//               $articles = $articles->get();
 
-                return redirect()->route('users.index');
+        Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1], $request->has('remember'));
+        $usersArticles = $user->find(Auth::user()->id)->articles()->get();
+//           dd( $usersArticles);
+        return view('users.index',compact('usersArticles'));
+//        return redirect()->route('users.index');
 
 
     }
@@ -107,6 +150,51 @@ class UsersController extends Controller {
 	{
 		//
 	}
+
+    public function registered($confirmationCode){
+
+        /*if( ! $confirmationCode)
+        {
+            throw new InvalidConfirmationCodeException;
+        }*/
+
+//        $user = User::whereConfirmationCode($confirmationCode)->first()->update(['active'=>1,'confirmation_code'=>null]);
+//        $user = User::whereConfirmationCode($confirmationCode)->first()->update(['active'=>1]);
+        $user = User::whereConfirmationCode($confirmationCode)->first();
+
+
+
+        if( User::where('confirmation_code','=',$confirmationCode)->update(['confirmation_code'=>null,'active'=>1])){
+
+            Auth::login($user);
+
+        }
+
+
+
+
+
+
+//                 dd($user);
+       /* if ( ! $user)
+        {
+            throw new InvalidConfirmationCodeException;
+        }*/
+
+        /*$user->active = 1;
+        $user->confirmation_code = null;
+        $user->save();*/
+
+                     return view('users.index');
+       /* Flash::message('You have successfully verified your account.');
+
+        return Redirect::route('login_path');*/
+
+    }
+
+
+
+
    /* public function upload(){
         if (Request::hasFile('upload')) {
             var_dump($result = Imageupload::upload(Request::file('upload'))) ;
@@ -114,5 +202,7 @@ class UsersController extends Controller {
             echo 'no file read';
         }
     }*/
+
+
 
 }

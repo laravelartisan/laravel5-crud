@@ -12,6 +12,24 @@
 |
 */
 
+get('dot',function(){
+
+   /* $array = ['foo' => ['bar' => 'baz'],'boo'=>['hello'=>1,'gello'=>2]];
+
+    $array = array_dot($array);
+    dd( $array['boo.hello']);*/
+
+    $array = [100, 200, 300];
+/*
+    $value = array_first($array, function($key, $value)
+    {
+        dd($value );
+    });*/
+    $array = ['name' => 'Joe', 'languages' => ['PHP', 'Ruby']];
+
+    dd($array = array_flatten($array));
+}) ;
+
 Route::get('/', 'WelcomeController@index');
 
 //Route::get('/', 'HomeController@index');
@@ -30,9 +48,10 @@ Route::controllers([
     dd(DB::table('users')->get());
 
 });*/
-/*Route::get('home',function(){
+Route::get('home',function(){
     return view("home");
 });
+/*
 Route::get('auth/register','Auth\AuthController@getRegister');
 Route::get('auth/login','Auth\AuthController@getLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
@@ -46,6 +65,7 @@ Route::get('/',function(){
     return view('users.index');
 });*/
 //Route::get('/', 'PagesController@index');
+get('article','ArticlesController@index');
 
 $router->bind('songs',function($slug ){
 
@@ -64,9 +84,18 @@ $router->resource('songs','SongsController',[
 
     ]
 ]);
+/*Route::get('profile',  function()
+{
+    if(!Auth::guest()){
+
+        return view('users.index');
+    }
+
+});*/
 
 Route::resource('users','UsersController');
 Route::post('users/login', 'UsersController@login');
+Route::get('registered/{confirmation}','UsersController@registered');
 /*Route::get('file',function(){
 
     return view('upload');
@@ -89,10 +118,15 @@ Route::get('mail',function(){
     return view('emails.index');
 });
 
-Route::get('mailConfirmation',function(){
+/*Route::get('mailConfirmation',['as'=>'contacteq',function(){
     return view('email')->with('message', 'Thanks for contacting us!');
-});
+    return view('email');
+}]);*/
 
+Route::get('contact',function(){
+//    return view('email')->with('message', 'Thanks for contacting us!');
+    return view('email');
+});
 Route::get('activeRegistration',function(){
     return 'ur registration is activated';
 });

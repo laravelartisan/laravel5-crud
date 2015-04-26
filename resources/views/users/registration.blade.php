@@ -11,8 +11,16 @@
 						</div>
 					@endif
 
+
+					{{--@if(!Auth::guest())
+
+                                                hello how are you
+
+                     @endif--}}
+
                     {!! Form::open(['route'=>'users.store','class'=>'form-signin']) !!}
                         <h1 class="form-signin-heading">Please sign up</h1>
+                    {{--{!! Form::hidden('confirmation_code',str_random(30)) !!}--}}
                     {!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Enter your name']) !!}
                     {!! Form::email('email',null,['class'=>'form-control','placeholder'=>'Enter your email']) !!}
                     {!! Form::password('password',['class'=>'form-control','placeholder'=>'Enter your password']) !!}

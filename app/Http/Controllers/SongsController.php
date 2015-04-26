@@ -17,6 +17,7 @@
         {
 
             $this->song = $song;
+            $this->middleware('auth',['only'=>['create','edit']]);
 
 
         }
@@ -34,7 +35,7 @@
 
             $songs = $this->song->get();
            // $songs = Song::all();
-    //        dd($songs);
+//            dd($songs);
 
             return view('songs.index',compact('songs'));
         }
@@ -93,7 +94,7 @@
          * @param  int  $id
          * @return Response
          */
-        public function update(CreateSongRequest $request,Song $song )
+        public function update(Request $request,Song $song )
         {
 
     //        dd($song);

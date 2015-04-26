@@ -6,6 +6,11 @@
       @section('content')
         @if (Auth::guest())
              <div class="container" >
+             @if(Session::has('message'))
+                 <div class="alert alert-info">
+                   {{Session::get('message')}}
+                 </div>
+             @endif
 
                           @include('users.container')
 
