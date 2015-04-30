@@ -29,16 +29,19 @@ class ArticlesController extends Controller {
 
 
 //        dd($this->user->find(29)->articles);
-        foreach($this->user->get() as $user){
+       /* foreach($this->user->get() as $user){
 
           dd( $ff = $this->user->find($user->id)->articles()->get());
 
-        }
-        dd($ff);
+        }*/
+//        dd($ff);
 //        dd($this->user->find(29)->articles()->get());
 
         $articles =  $this->article->get();
-        return view('article',compact('articles'));
+//        dd($articles);
+//        return $articles;
+         echo json_encode($articles);
+//        return view('article',compact('articles'));
 	}
 
 	/**
@@ -67,9 +70,12 @@ class ArticlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id, Article $article)
 	{
 		//
+        $article = $article->find($id);
+//                dd($article);
+        return $article;
 	}
 
 	/**

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use Auth;
 use App\Http\Requests\LoginRequest;
-use App\Article;
+//use App\Article;
 
 //use Request;
 
@@ -126,7 +126,7 @@ class UsersController extends Controller {
 	{
 		//
 	}
-    public function login(LoginRequest $request,Article $articles, User $user  )
+    public function login(LoginRequest $request,User $user  )
     {
         //
 //               $articles = $articles->get();

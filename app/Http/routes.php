@@ -65,7 +65,7 @@ Route::get('/',function(){
     return view('users.index');
 });*/
 //Route::get('/', 'PagesController@index');
-get('article','ArticlesController@index');
+Route::resource('article','ArticlesController');
 
 $router->bind('songs',function($slug ){
 
@@ -130,3 +130,9 @@ Route::get('contact',function(){
 Route::get('activeRegistration',function(){
     return 'ur registration is activated';
 });
+
+Route::get('test', function () {
+
+    return view('users.test');
+});
+
