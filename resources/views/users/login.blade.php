@@ -3,8 +3,8 @@
             <div class="form-group {{ $errors->has('title')? 'has-error':'' }}">
             {!! Form::email('email',null,['class'=>'form-control','placeholder'=>'Enter your email']) !!}
             {!!  $errors->first('email','<span class="help-block">:message</span>')   !!}
-</div>
- <div class="form-group {{ $errors->has('title')? 'has-error':'' }}">
+            </div>
+            <div class="form-group {{ $errors->has('title')? 'has-error':'' }}">
             {!! Form::password('password',['class'=>'form-control','placeholder'=>'Enter your password']) !!}
             {!!  $errors->first('password','<span class="help-block">:message</span>')   !!}
             </div>

@@ -10,14 +10,16 @@
 <script>
 
 
+
     $(document).ready(function(){
-                                      {{--var wr = {{ base_path() }}--}}
+
         $.ajax({
             'url':'article',
             'dataType':'json'
 
         }).success(function(data){
             console.log(data);
+
 
            /* $(data).each(function(index,item){
 //                console.log(item.id);

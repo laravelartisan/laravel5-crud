@@ -32,8 +32,9 @@
         {
             //
 //            return Auth::user();
-
-            $songs = $this->song->get();
+            $songs = $this->song->simplePaginate(2);
+//            dd($songs);
+//            $songs = $this->song->get();
            // $songs = Song::all();
 //            dd($songs);
 
