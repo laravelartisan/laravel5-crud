@@ -4,14 +4,15 @@
 
 
 <div class="container">
-  <table width="60%" cellspacing="0" cellpadding="4" border="0" class="data">
+  {{--<table width="60%" cellspacing="0" cellpadding="4" border="0" class="data">--}}
     @foreach($songs as $song)
-    <tr>
-      <td>{!! link_to_route('song_details',$song->title,[$song->slug])  !!} </td>
+    {{--<tr>--}}
+      {{--<td>{!! link_to_route('song_details',$song->title,[$song->slug])  !!} </td>--}}
 
-    </tr>
+    {{--</tr>--}}
+    {!! '<dive>'. link_to_route('song_details',$song->title,[$song->slug]). '</dive><br>'  !!}
     @endforeach
-  </table>
+  {{--</table>--}}
   <div class="pagination"> {!!  $songs->render() !!}  </div>
 </div>
 

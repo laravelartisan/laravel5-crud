@@ -40,7 +40,7 @@ class ArticlesController extends Controller {
         $articles =  $this->article->get();
 //        dd($articles);
 //        return $articles;
-         echo json_encode($articles);
+        echo json_encode($articles) ;
 //        return view('article',compact('articles'));
 	}
 

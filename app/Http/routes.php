@@ -67,6 +67,7 @@ Route::get('/',function(){
 //Route::get('/', 'PagesController@index');
 Route::resource('article','ArticlesController');
 
+
 $router->bind('songs',function($slug ){
 
     return App\Song::whereSlug($slug)->first();
